@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Керування викладачами кафедри</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Викладачі кафедри</h1>
+      <p class="subtitle">Система обліку викладацького складу та закріплених аудиторій</p>
+    </header>
+
+    <div id="alert-box" class="alert hidden"></div>
+
+    <section class="card">
+    <h2 id="form-title">Додати викладача</h2>
+    <form id="teacher-form">
+        <input type="hidden" id="teacher-id">
+
+        <div class="form-grid">
+        <div class="form-group">
+            <label for="last_name">Прізвище (тільки кирилиця) *</label>
+            <input 
+            type="text" 
+            id="last_name" 
+            placeholder="напр. Ковальчук" 
+            pattern="[А-ЯІЇЄҐа-яіїєґ]+(['\-][А-ЯІЇЄҐа-яіїєґ]+)*" 
+            title="Лише літери кирилиці, дефіс або апостроф"
+            required
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="position">Посада *</label>
+            <select id="position" required>
+            <option value="" disabled selected>Оберіть посаду...</option>
+            <option value="Асистент">Асистент</option>
+            <option value="Викладач">Викладач</option>
+            <option value="Старший викладач">Старший викладач</option>
+            <option value="Доцент">Доцент</option>
+            <option value="Професор">Професор</option>
+            <option value="Завідувач кафедри">Завідувач кафедри</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="degree">Науковий ступінь *</label>
+            <select id="degree" required>
+            <option value="" disabled selected>Оберіть ступінь...</option>
+            <option value="Без ступеня">Без ступеня</option>
+            <option value="Кандидат наук">Кандидат наук</option>
+            <option value="Доктор філософії (PhD)">Доктор філософії (PhD)</option>
+            <option value="Доктор наук">Доктор наук</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="classroom">Аудиторія *</label>
+            <input type="text" id="classroom" placeholder="напр. 305-18" required>
+        </div>
+        </div>
+
+        <div class="form-actions">
+        <button type="submit" id="submit-btn" class="btn btn-primary">Зберегти</button>
+        <button type="button" id="cancel-btn" class="btn btn-secondary hidden">Скасувати</button>
+        </div>
+    </form>
+    </section>
+
+    <section class="card">
+      <div class="table-header">
+        <h2>Список викладачів</h2>
+        <button id="refresh-btn" class="btn btn-outline">Оновити</button>
+      </div>
+
+      <div class="table-wrapper">
+        <table id="teachers-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Прізвище</th>
+              <th>Посада</th>
+              <th>Ступінь</th>
+              <th>Аудиторія</th>
+              <th>Дії</th>
+            </tr>
+          </thead>
+          <tbody id="teachers-tbody">
+          </tbody>
+        </table>
+      </div>
+      <p id="empty-state" class="empty-state hidden">Викладачів поки немає в базі даних.</p>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
